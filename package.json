@@ -1,5 +1,5 @@
 {
-  "name": "selectors",
+  "name": "@theclinician/selectors",
   "version": "0.5.0",
   "description": "A set of building blocks for creating complex selector functions",
   "main": "lib/index.js",
