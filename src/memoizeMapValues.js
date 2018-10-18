@@ -1,5 +1,5 @@
-import map from 'lodash/map';
 import keyBy from 'lodash/keyBy';
+import iteratee from 'lodash/iteratee';
 import shallowEqual from './shallowEqual';
 import stableMapValues from './stableMapValues';
 import defaultIsEqual from './defaultIsEqual';
@@ -14,7 +14,7 @@ const memoizeMapValues = (mapOneValue, getKey, isEqual = defaultIsEqual) => {
     }
     const newValues = {};
     const newResult = stableMapValues(input, (value, key) => {
-      const cacheKey = getKey ? map([value], getKey)[0] : key;
+      const cacheKey = getKey ? iteratee(getKey)(value) : key;
       const memoizedValue = lastValues && lastValues[cacheKey];
       if (lastInput && lastInput[cacheKey] === value) {
         newValues[cacheKey] = memoizedValue;

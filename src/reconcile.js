@@ -21,9 +21,7 @@ function reconcile(a, b, { level = -1 } = {}) {
     }
     return b;
   }
-  const aIsPlainObject = isPlainObject(a);
-  const bIsPlainObject = isPlainObject(b);
-  if (aIsPlainObject && bIsPlainObject) {
+  if (isPlainObject(a) && isPlainObject(b)) {
     const c = mapValues(b, (v, k) => reconcile(a[k], v, { level: level > 0 ? level - 1 : level }));
     if (shallowEqual(c, a)) {
       return a;
