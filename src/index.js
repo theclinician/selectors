@@ -1,5 +1,4 @@
 import omit from 'lodash/omit';
-import isArray from 'lodash/isArray';
 import isPlainObject from 'lodash/isPlainObject';
 import mapValues from 'lodash/mapValues';
 import isEqual from 'lodash/isEqual';
@@ -11,8 +10,8 @@ import {
 } from 'reselect';
 import createGetAtKey from './createGetAtKey';
 import shallowEqual from './shallowEqual';
-import reconcile from './reconcile';
 import createValuesMappingSelector from './createValuesMappingSelector';
+import createReconcilingSelector from './createReconcilingSelector';
 
 export const identity = x => x;
 
@@ -60,32 +59,6 @@ export const createHigherOrderSelector = (...selectorArgs) => {
   };
 };
 
-const normalize = (args) => {
-  if (isArray(args[0])) {
-    return [
-      args[0],
-      args[1],
-    ];
-  }
-  return [
-    args.slice(0, args.length - 1),
-    args[args.length - 1],
-  ];
-};
-
-export const createReconcilingSelector = (...args) => {
-  const [selectors, evaluate] = normalize(args);
-  let cached;
-  return createSelector(
-    selectors,
-    (...values) => {
-      const result = evaluate(...values);
-      cached = reconcile(cached, result);
-      return cached;
-    },
-  );
-};
-
 export const toSelector = (selector) => {
   if (isPlainObject(selector)) {
     return createStructuredSelector(mapValues(selector, toSelector));
@@ -107,5 +80,6 @@ export const createDeepEqualSelector = createSelectorCreator(
 
 export {
   createValuesMappingSelector,
+  createReconcilingSelector,
 };
 
