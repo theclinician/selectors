@@ -11,7 +11,7 @@ import {
 import createGetAtKey from './createGetAtKey';
 import shallowEqual from './shallowEqual';
 import createValuesMappingSelector from './createValuesMappingSelector';
-import createReconcilingSelector from './createReconcilingSelector';
+import createReconcilingSelector, { createReconcilingSelectorCreator } from './createReconcilingSelector';
 
 export const identity = x => x;
 
@@ -81,5 +81,6 @@ export const createDeepEqualSelector = createSelectorCreator(
 export {
   createValuesMappingSelector,
   createReconcilingSelector,
+  createReconcilingSelectorCreator,
 };
 
