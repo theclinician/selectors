@@ -79,6 +79,7 @@ export const createDeepEqualSelector = createSelectorCreator(
 );
 
 export {
+  createGetAtKey,
   createValuesMappingSelector,
   createReconcilingSelector,
   createReconcilingSelectorCreator,
