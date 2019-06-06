@@ -18,6 +18,12 @@ describe('Test - createValuesMappingSelector', () => {
     testContext.shallowCopy = createValuesMappingSelector(identity, shallowCopy);
   });
 
+  describe('Given a null value', () => {
+    test('leaves null unchanged', () => {
+      expect(testContext.identity(null)).toBe(null);
+    });
+  });
+
   describe('Given an empty object', () => {
     test('persists identity mapping', () => {
       const result1 = testContext.identity({});

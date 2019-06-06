@@ -3,7 +3,11 @@ import stableMapValues from './stableMapValues';
 
 // TODO: Implement more tests.
 describe('Test - stableMapValues', () => {
-  it('should remove keys and map object at the same time', () => {
+  test('leaves null unchanged', () => {
+    expect(stableMapValues(null)).toEqual(null);
+  });
+
+  test('removes keys and map object at the same time', () => {
     expect(stableMapValues({
       1: 1,
       2: 2,
@@ -20,7 +24,7 @@ describe('Test - stableMapValues', () => {
     });
   });
 
-  it('should remove elements and map array at the same time', () => {
+  test('removes elements and map array at the same time', () => {
     expect(stableMapValues([
       1,
       2,
