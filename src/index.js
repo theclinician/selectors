@@ -62,7 +62,8 @@ export const createHigherOrderSelector = (...selectorArgs) => {
 export const toSelector = (selector) => {
   if (isPlainObject(selector)) {
     return createStructuredSelector(mapValues(selector, toSelector));
-  } else if (typeof selector === 'function') {
+  }
+  if (typeof selector === 'function') {
     return selector;
   }
   return constant(selector);
@@ -84,4 +85,3 @@ export {
   createReconcilingSelector,
   createReconcilingSelectorCreator,
 };
-
