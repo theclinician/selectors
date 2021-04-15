@@ -8,6 +8,7 @@ import {
   createSelectorCreator,
   defaultMemoize,
 } from 'reselect';
+import reconcile from './reconcile';
 import createGetAtKey from './createGetAtKey';
 import shallowEqual from './shallowEqual';
 import createValuesMappingSelector from './createValuesMappingSelector';
@@ -80,6 +81,8 @@ export const createDeepEqualSelector = createSelectorCreator(
 );
 
 export {
+  reconcile,
+  shallowEqual,
   createGetAtKey,
   createValuesMappingSelector,
   createReconcilingSelector,

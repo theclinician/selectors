@@ -104,6 +104,16 @@ it('selects sub-array from the first argument if values are the same', () => {
   expect(c).toEqual(b);
 });
 
+it('selects sub-array from the first argument if values deep equal', () => {
+  const a = { p: [{ x: 1 }, { x: 2 }], q: [{ x: 2 }, { x: 2 }] };
+  const b = { p: [{ x: 1 }, { x: 2 }], q: [{ x: 1 }, { x: 2 }] };
+  const c = reconcile(a, b);
+  expect(c).not.toBe(a);
+  expect(c).not.toBe(b);
+  expect(c.p).toBe(a.p);
+  expect(c).toEqual(b);
+});
+
 it('selects date from the first argument if dates are equal', () => {
   const a = { date: new Date('2018-08-28'), x: 1 };
   const b = { date: new Date('2018-08-28'), x: 2 };
